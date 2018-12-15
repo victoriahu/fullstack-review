@@ -18,21 +18,21 @@ class Search extends React.Component {
     });
     //ajax post request to /repos
     //jquery in react??? not the same as fetch?
-    $.post("/repos", function(data) {
-      alert("success");
-    })
-    .done(function() {
-      alert("test done");
-    })
-    .fail(function() {
-      alert("error");
-    })
+    // $.post("/repos", function(data) {
+    //   alert("success");
+    // })
+    // .done(function() {
+    //   alert("test done");
+    // })
+    // .fail(function() {
+    //   alert("error");
+    // })
   }
 
   search() {
     this.props.onSearch(this.state.term);
     //clear search after
-
+    //don't think I'm supposed to do much here;
   }
 //this.props ???
 //wtf is onSearch. must be like onClick, onSubmit. except all it does is console.log, apparently. 
