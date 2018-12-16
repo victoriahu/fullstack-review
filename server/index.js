@@ -13,12 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/repos', function (req, res) {
-  console.log(req.body.data.owner);
+  // console.log(req.body.data.owner);
   // TODO - your code here!
 
 
   getReposByUsername(req.body.data.owner, function(err, data) {
-    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&", req.body);
+    // console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&", req.body);
     if (err) {
       throw (err);
     }
@@ -36,15 +36,25 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  console.log("GET REQUEST ALKSDJALKSDJS: ", req.body.term);
+  console.log("GET REQUEST ALKSDJALKSDJS: ", req.body);
     // Kitten.find({ name: /^fluff/ }, callback);
-  db.repos.find({owner: req.body.term}, function(err, data) {
+
+  db.getRepos((err, data) => {
     if (err) {
-      console.log("ERRORRORORORO GET SERVER");
+      // console.log('getRepos is erroring in server');
       throw (err);
     }
+    console.log("this is our datalkasjdlaksdjlasdjaklsdasd", data);
     res.send(data);
   })
+  // db.repos.find((err, data) => {
+  //   if (err) {
+  //     console.log("ERRORRORORORO GET SERVER");
+  //     throw (err);
+  //   }
+  //   res.send(data);
+  // })
+
   //what form does the find have? bunch of objects
   // res.send(all);
 });

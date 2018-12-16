@@ -16,6 +16,10 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
+let getRepos = (callback) => {
+  Repo.find().sort({repo_id: 'desc'}).exec(callback);
+}
+
 let save = (err, product) => {
   // TODO: Your code here
   // This function should save a repo or repos to
@@ -24,8 +28,8 @@ let save = (err, product) => {
     throw (err);
   }
   product = JSON.parse(product);
-  console.log("we here and i like apple pie ===========================================================");
-  console.log(typeof product, product[0].owner.login, product[0].id, product[0].name, product[0].html_url);
+  // console.log("we here and i like apple pie ===========================================================");
+  // console.log(typeof product, product[0].owner.login, product[0].id, product[0].name, product[0].html_url);
   for (var i = 0; i < product.length; i++) {
 
     var awesome_instance = new Repo({
@@ -35,7 +39,7 @@ let save = (err, product) => {
         html_url: product[i].html_url
       });
 
-    console.log(awesome_instance);
+    // console.log(awesome_instance);
     // db.collection("repos").findOneAndUpdate({ "repo_id" : awesome_instance.repo_id }, {awesome_instance});
     awesome_instance.save(function(err) {
       if (err) return "(err)";
@@ -52,3 +56,4 @@ let save = (err, product) => {
 }
 
 module.exports.save = save;
+module.exports.getRepos = getRepos;

@@ -24,13 +24,13 @@ let getReposByUsername = (username, callback) => {
   };
 
   request(options, (error, response, body) => {
-    console.log("vicky is cool");
+    // console.log("vicky is cool");
     if (error) {
       callback(error, null);
     } 
-    console.log("vicky is super cool lkajsdlkjasd", response.statusCode, response.body);
+    // console.log("vicky is super cool lkajsdlkjasd", response.statusCode, response.body);
     if (response.statusCode == 200) {
-      console.log("vicky is super super cool")
+      // console.log("vicky is super super cool")
       callback(null, body);
     }
     

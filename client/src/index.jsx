@@ -30,25 +30,22 @@ class App extends React.Component {
     // });
 
     $.post("/repos",{ data: {owner: term}}, (data) => {
-      alert("success");
-      console.log("JACK ALKSDASD", data);
-      // console.log(this);
-      this.setState({
-        repos: JSON.parse(data)
-      })
+      // alert("success");
       
     })
-    .always(function() {
-      console.log("test done =================================");
-      // $.get("/repos", (data) => {
-      //   this.setState({
-      //       repos: data
-      //       })
-      //   alert("Data loaded: ", data);
-      // })
-      // .fail(function(){
-      //   alert("search error");
-      // })
+    .done(() => {
+      // console.log("test done =================================");
+      $.get("/repos", (data) => {
+        data = data.slice(0,25);
+        // console.log(this, "this is our this again ahahahaha");
+        this.setState({
+            repos: data
+            })
+        // alert("Data loaded: ", data);
+      })
+      .fail(function(){
+        alert("search error");
+      })
     })
     .fail(function() {
       alert("error");
@@ -56,6 +53,7 @@ class App extends React.Component {
     // var settings = {
     //   data: {owner: term}
     // }
+
   }
 
   render () {
